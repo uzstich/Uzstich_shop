@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>UZ STICH</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* ====== SOZLAMA: Apps Script veb-ilova havolasi (.../exec) ====== */
+  window.API_URL = 'BU_YERGA_APPS_SCRIPT_EXEC_HAVOLASI';
+</script>
+<style>
+:root{--g:#3F8768;--gd:#2E6A50;--mint:#97CDB4;--ml:#E7F4EE;--ink:#121614;--mut:#5E6B65;--line:#DCE6E0;--bg:#F2F7F4;--card:#fff;--err:#C8403A;--sab:env(safe-area-inset-bottom)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:15px}
+button{font-family:inherit;cursor:pointer;color:inherit}
+img{display:block}
+.top{position:sticky;top:0;z-index:20;background:var(--mint);border-bottom:3px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:10px 14px;gap:10px}
+.top .logo{height:34px;width:auto}
+.top .ttl{font-family:'Rubik Mono One',sans-serif;font-size:15px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.langs{display:flex;background:rgba(255,255,255,.6);border-radius:999px;padding:3px;flex:none}
+.langs button{border:0;background:none;font-weight:800;font-size:12px;padding:6px 9px;border-radius:999px}
+.langs button.on{background:var(--ink);color:#fff}
+.back{border:0;background:rgba(255,255,255,.6);width:36px;height:36px;border-radius:50%;font-size:18px;font-weight:800;flex:none}
+main{padding:14px 14px calc(96px + var(--sab));max-width:640px;margin:0 auto}
+h2.sec{font-family:'Rubik Mono One',sans-serif;font-weight:400;font-size:16px;margin:22px 0 12px;display:flex;justify-content:space-between;align-items:center}
+h2.sec button{font-family:Manrope,sans-serif;font-size:13px;font-weight:800;border:0;background:none;color:var(--gd)}
+.banners{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -14px;padding:0 14px;scrollbar-width:none}
+.banners::-webkit-scrollbar,.chips::-webkit-scrollbar,.hs::-webkit-scrollbar{display:none}
+.bn{flex:0 0 100%;scroll-snap-align:center;border-radius:20px;overflow:hidden;border:2px solid var(--ink);aspect-ratio:1200/468;background:var(--mint);position:relative;padding:0}
+.bn img{width:100%;height:100%;object-fit:cover}
+.bn.txt{background:var(--g);color:#fff;display:flex;align-items:flex-end;text-align:left;padding:18px;box-shadow:inset 0 0 0 0 transparent}
+.bn.txt b{font-family:'Rubik Mono One',sans-serif;font-weight:400;font-size:17px;line-height:1.25;max-width:85%}
+.bn.txt i{position:absolute;top:14px;right:16px;font-style:normal;font-size:26px;color:var(--mint)}
+.bn.txt::before{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border:10px solid var(--ink);opacity:.25}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--ink);width:18px;border-radius:4px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border:1.5px solid var(--line);background:#fff;border-radius:18px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:8px;min-height:120px;position:relative;overflow:hidden}
+.tile b{font-weight:800;font-size:14px;z-index:1;max-width:62%}
+.tile img{position:absolute;right:-12px;bottom:-12px;width:62%;aspect-ratio:1;object-fit:contain;mix-blend-mode:multiply}
+.tile.dz{background:var(--ml)}
+.tile.dz img{mix-blend-mode:normal;width:50%;right:8px;bottom:8px}
+.tile em{font-style:normal;font-size:12px;color:var(--mut);font-weight:700;z-index:1}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pc{border:1.5px solid var(--line);background:#fff;border-radius:18px;padding:0;overflow:hidden;text-align:left;display:flex;flex-direction:column}
+.pc .im{aspect-ratio:1;background:#fff;position:relative}
+.pc .im img{width:100%;height:100%;object-fit:contain}
+.pc .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--line);flex:1}
+.pc .nm{font-weight:800;font-size:14px}
+.pc .pr{font-weight:800;color:var(--gd)}
+.pc .sw{display:flex;gap:4px;margin-top:2px}
+.pc .sw i{width:13px;height:13px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+.pc.dz .im{background:var(--ml)}
+.pc.dz .im img{padding:14%}
+.tag{position:absolute;top:8px;left:8px;background:var(--ink);color:#fff;font-size:11px;font-weight:800;border-radius:999px;padding:4px 9px}
+.tag.k{background:var(--g)}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 -14px 12px;padding:2px 14px;scrollbar-width:none}
+.chips button{flex:none;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;font-weight:800;font-size:14px}
+.chips button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.info{background:var(--ink);color:#fff;border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:6px 6px 0 var(--g)}
+.info b{font-family:'Rubik Mono One',sans-serif;font-weight:400;font-size:14px;display:block;margin-bottom:6px}
+.info p{margin:0 0 4px;color:#d6e4dc;font-size:14px}
+.info p span{color:var(--mint);font-weight:800}
+.info button{margin-top:10px;border:0;background:var(--mint);color:var(--ink);border-radius:12px;padding:11px 14px;font-weight:800;width:100%}
+.empty{text-align:center;color:var(--mut);padding:50px 10px;font-weight:700}
+.empty b{display:block;font-size:40px;margin-bottom:10px}
+/* configurator */
+.stage{background:#fff;border:1.5px solid var(--line);border-radius:22px;position:relative;overflow:hidden;aspect-ratio:1}
+.stage>img.base{width:100%;height:100%;object-fit:contain}
+.stage .dsg{position:absolute;pointer-events:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.15))}
+.side{position:absolute;top:10px;right:10px;display:flex;background:rgba(255,255,255,.85);border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.side button{border:0;background:none;border-radius:999px;padding:6px 11px;font-weight:800;font-size:12px}
+.side button.on{background:var(--ink);color:#fff}
+.pname{font-family:'Rubik Mono One',sans-serif;font-weight:400;font-size:19px;margin:16px 0 4px}
+.pdesc{color:var(--mut);margin:0 0 6px;font-weight:600}
+.price{font-size:22px;font-weight:800;color:var(--gd)}
+.price small{font-size:13px;color:var(--mut);font-weight:700;margin-left:6px}
+.lbl{font-weight:800;font-size:13px;color:var(--mut);margin:18px 0 8px;display:flex;justify-content:space-between}
+.lbl span{color:var(--ink)}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatches button{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(0,0,0,.18);padding:0;position:relative}
+.swatches button.on::after{content:'';position:absolute;inset:-6px;border:2.5px solid var(--ink);border-radius:50%}
+.sizes{display:flex;gap:8px;flex-wrap:wrap}
+.sizes button{min-width:50px;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:11px 10px;font-weight:800}
+.sizes button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sizes.bad button{border-color:var(--err)}
+.hs{display:flex;gap:10px;overflow-x:auto;margin:0 -14px;padding:2px 14px 4px;scrollbar-width:none}
+.dpick{flex:none;width:86px;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:6px;text-align:center;font-size:11px;font-weight:800}
+.dpick .t{aspect-ratio:1;background:var(--ml);border-radius:10px;display:grid;place-items:center;margin-bottom:5px;overflow:hidden}
+.dpick .t img{width:78%;height:78%;object-fit:contain}
+.dpick .t b{font-size:22px;color:var(--mut)}
+.dpick.on{border-color:var(--ink);box-shadow:0 0 0 1.5px var(--ink)}
+.gpick{flex:none;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:8px 12px 8px 8px;display:flex;align-items:center;gap:8px;font-weight:800}
+.gpick img{width:40px;height:40px;object-fit:contain}
+.gpick.on{border-color:var(--ink);box-shadow:0 0 0 1.5px var(--ink)}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+.qty button{border:0;background:none;width:42px;height:42px;font-size:20px;font-weight:800}
+.qty b{min-width:34px;text-align:center;font-size:16px}
+/* bottom */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 14px calc(10px + var(--sab));background:linear-gradient(rgba(242,247,244,0),var(--bg) 30%)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:612px;margin:0 auto;padding:16px;border:0;border-radius:16px;background:var(--ink);color:#fff;font-weight:800;font-size:16px;box-shadow:0 5px 0 var(--g)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--g)}
+.btn:disabled{opacity:.5}
+.btn.g{background:var(--g);box-shadow:0 5px 0 var(--gd)}
+.btn.lite{background:#fff;color:var(--ink);border:1.5px solid var(--ink);box-shadow:none}
+.btn .sum{background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px;font-size:14px}
+nav.nav{position:fixed;left:0;right:0;bottom:0;z-index:25;background:#fff;border-top:1.5px solid var(--line);display:flex;padding:6px 6px calc(6px + var(--sab))}
+nav.nav button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:800;color:var(--mut);padding:6px 0;position:relative}
+nav.nav button svg{width:24px;height:24px}
+nav.nav button.on{color:var(--ink)}
+nav.nav button.on svg{color:var(--g)}
+nav.nav em{position:absolute;top:0;left:calc(50% + 6px);font-style:normal;background:var(--err);color:#fff;font-size:10px;border-radius:999px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 5px}
+/* cart */
+.cl{display:flex;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:10px;margin-bottom:10px}
+.cl .th{width:86px;height:86px;flex:none;position:relative;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.cl .th img.base{width:100%;height:100%;object-fit:contain}
+.cl .th .dsg{position:absolute}
+.cl .in{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.cl .in b{font-weight:800}
+.cl .in small{color:var(--mut);font-weight:700;font-size:12px}
+.cl .rw{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.cl .qty button{width:34px;height:34px;font-size:17px}
+.cl .rm{border:0;background:none;color:var(--mut);font-size:12px;font-weight:800;align-self:flex-start;padding:0}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:17px;padding:14px 4px}
+/* forms */
+.card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.card h3{margin:0 0 4px;font-size:13px;text-transform:uppercase;letter-spacing:.6px;font-weight:800;display:flex;align-items:center;gap:8px}
+.card h3 i{font-style:normal;width:24px;height:24px;border-radius:8px;background:var(--g);color:#fff;display:grid;place-items:center;font-size:12px}
+label.l{display:block;font-weight:800;font-size:13px;color:var(--mut);margin:14px 0 6px}
+input,textarea{width:100%;padding:13px 14px;font:600 16px Manrope,sans-serif;border:1.5px solid var(--line);border-radius:12px;background:#FBFDFC;color:var(--ink);outline:none;-webkit-appearance:none}
+input:focus,textarea:focus{border-color:var(--g);background:#fff}
+textarea{min-height:80px;resize:vertical}
+.bad{border-color:var(--err)!important;animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 8px;font-weight:800;font-size:14px}
+.seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sbtn{margin-top:8px;border:1.5px dashed var(--g);background:var(--ml);color:var(--gd);border-radius:12px;padding:11px 14px;font-weight:800;width:100%;text-align:left}
+.sbtn.ok{border-style:solid;background:#fff}
+.note{font-size:13px;color:var(--mut);margin-top:8px;font-weight:600;line-height:1.5}
+.qr{display:flex;gap:14px;align-items:center;margin-top:10px}
+.qr img{width:130px;height:130px;object-fit:contain;border:1.5px solid var(--line);border-radius:12px;background:#fff;flex:none}
+.ph{display:flex;gap:10px;margin-top:8px}
+.ph .t{width:76px;height:76px;border-radius:12px;overflow:hidden;position:relative;border:1.5px solid var(--line)}
+.ph .t img{width:100%;height:100%;object-fit:cover}
+.ph .t b{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;display:grid;place-items:center;font-size:14px}
+.ph label{width:76px;height:76px;border:2px dashed var(--g);border-radius:12px;background:var(--ml);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gd);font-weight:800;font-size:11px;text-align:center}
+.ph label span{font-size:24px;line-height:1}
+.ph input{display:none}
+/* orders */
+.oc{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px}
+.oc .r1{display:flex;justify-content:space-between;align-items:center}
+.oc .no{font-family:'Rubik Mono One',sans-serif;font-size:15px}
+.oc .ds{white-space:pre-line;font-size:13px;color:var(--mut);font-weight:600;margin:8px 0;line-height:1.55}
+.oc .ft{display:flex;justify-content:space-between;align-items:center;font-weight:800;gap:8px;flex-wrap:wrap}
+.steps{display:flex;gap:4px;margin-top:10px}
+.steps i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.steps i.on{background:var(--g)}
+.bdg{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;white-space:nowrap}
+.b-0{background:#DCEBFF;color:#1E4E9C}.b-1{background:#FFF0D6;color:#8A5A00}.b-2{background:var(--ml);color:var(--gd)}.b-3{background:var(--ink);color:#fff}.b-4{background:#EEE;color:#777}
+.paid{color:var(--gd);font-size:13px}
+.mini{border:1.5px solid var(--ink);background:#fff;border-radius:10px;padding:8px 12px;font-weight:800;font-size:13px}
+/* contact */
+.ci{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);text-align:left;width:100%;background:none;border-left:0;border-right:0;border-top:0;font-size:15px}
+.ci:last-child{border-bottom:0}
+.ci i{font-style:normal;width:38px;height:38px;border-radius:12px;background:var(--ml);display:grid;place-items:center;font-size:18px;flex:none}
+.ci div{flex:1}
+.ci small{display:block;color:var(--mut);font-weight:700;font-size:12px}
+.ci b{font-weight:800}
+.hero{background:var(--g);border:3px solid var(--ink);border-radius:22px;padding:20px;color:#fff;box-shadow:7px 7px 0 var(--ink);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.hero img{width:84px;background:#fff;border-radius:14px;padding:8px}
+.hero b{font-family:'Rubik Mono One',sans-serif;font-weight:400;font-size:18px;display:block}
+.hero span{color:var(--mint);font-weight:700;font-size:13px}
+/* misc */
+.toast{position:fixed;left:14px;right:14px;bottom:calc(150px + var(--sab));z-index:60;max-width:600px;margin:0 auto;background:var(--ink);color:#fff;border-radius:14px;padding:13px 16px;font-weight:700;display:none;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toast.err{background:var(--err)}
+.load{position:fixed;inset:0;z-index:70;background:rgba(242,247,244,.75);display:none;align-items:center;justify-content:center}
+.load i{width:44px;height:44px;border:4px solid var(--mint);border-top-color:var(--ink);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.skel{height:180px;border-radius:20px;background:linear-gradient(90deg,#e8efeb,#f6faf8,#e8efeb);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.done{text-align:center;padding:30px 10px}
+.done .n{font-family:'Rubik Mono One',sans-serif;font-size:38px;margin:12px 0}
+.done .ok{width:84px;height:84px;margin:0 auto;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:42px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.done p{color:var(--mut);font-weight:700;line-height:1.5}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<main id="main"><div class="skel"></div></main>
+<div id="bar"></div>
+<nav class="nav" id="nav"></nav>
+<div class="toast" id="toast"></div>
+<div class="load" id="load"><i></i></div>
+
+<script>
+(function(){
+'use strict';
+var TG = window.Telegram && window.Telegram.WebApp;
+var LANGS = ['uz','ru','en'], LI = {uz:0,ru:1,en:2};
+var T = {
+uz:{home:'Bosh sahifa',catalog:'Katalog',cart:'Savat',orders:'Buyurtmalar',contact:'Aloqa',sum:"so'm",
+ cats:'Kategoriyalar',hits:'Xit savdo',all:'Hammasi',soon:"Bu bo'limga tez orada mahsulotlar qo'shiladi",
+ custom:'Shaxsiy dizayn kerakmi?',customP:'Print',customK:'Vishivka',from:'dan',customTxt:"O'z dizayningiz bo'yicha buyurtma uchun menejerimizga yozing",writeMgr:'Menejerga yozish',
+ color:'Rang',size:"O'lcham",qty:'Soni',design:'Dizayn',noDesign:'Dizaynsiz',garment:'Kiyim',front:'Old',back:'Orqa',
+ add:"Savatga qo'shish",added:"Savatga qo'shildi ✓",pickSize:"O'lchamni tanlang",extra:'dizayn',print:'Print',kashta:'Vishivka',
+ cartEmpty:"Savat bo'sh",goShop:"Katalogga o'tish",total:'Jami',checkout:'Rasmiylashtirish',remove:"O'chirish",
+ s_contact:"Ma'lumotlaringiz",name:'Ismingiz',phone:'Telefon raqam',sharePhone:'📱 Telegram raqamimni yuborish',
+ s_del:'Qabul qilish',pickup:"O'zim olib ketaman",delivery:'Yetkazib berish',shopAt:"Do'kon manzili",
+ addr:'Manzil (tuman, ko\'cha, uy, mo\'ljal)',sendLoc:"📍 Joylashuvimni yuborish",locOk:'📍 Joylashuv olindi ✓',locFail:"Joylashuvni olib bo'lmadi. Manzilni yozing.",
+ comment:'Izoh (ixtiyoriy)',s_pay:"To'lov",payTxt:"Paynet yoki istalgan to'lov ilovasida QR kodni skanerlang va to'lov chekini yuklang.",
+ payLater:"To'lovni keyin ham qilishingiz mumkin — menejer siz bilan bog'lanadi.",receipt:"Chek (ixtiyoriy)",addPh:"Qo'shish",
+ order:'Buyurtma berish',sending:'Yuborilmoqda…',done:'Buyurtma qabul qilindi!',doneTxt:"Menejerimiz tez orada siz bilan bog'lanadi. Buyurtma holatini «Buyurtmalar» bo'limida va botda kuzatishingiz mumkin.",
+ myOrders:'Mening buyurtmalarim',noOrders:"Sizda hali buyurtma yo'q",paid:"✓ Chek yuborilgan",sendReceipt:"Chek yuborish",due:'Muddat',
+ st:['Yangi','Tayyorlanmoqda','Tayyor','Topshirildi','Bekor qilingan'],
+ address:'Manzil',map:'Xaritada ochish',tel:'Telefon',hours:'Ish vaqti',insta:'Instagram',mgr:'Menejer',
+ needTg:"Buyurtma berish uchun do'konni Telegram bot orqali oching",err:"Xatolik. Qayta urinib ko'ring",errReq:"Majburiy maydonlarni to'ldiring",
+ errStale:"Katalog yangilandi. Savatni tekshirib, qayta urinib ko'ring",fill:'*',reload:'Qayta yuklash',noApi:"Do'kon hali sozlanmagan (API_URL)"},
+ru:{home:'Главная',catalog:'Каталог',cart:'Корзина',orders:'Заказы',contact:'Контакты',sum:'сум',
+ cats:'Категории',hits:'Хиты продаж',all:'Все',soon:'Скоро здесь появятся товары',
+ custom:'Нужен свой дизайн?',customP:'Принт',customK:'Вышивка',from:'от',customTxt:'Для заказа по вашему дизайну напишите нашему менеджеру',writeMgr:'Написать менеджеру',
+ color:'Цвет',size:'Размер',qty:'Количество',design:'Дизайн',noDesign:'Без дизайна',garment:'Изделие',front:'Перед',back:'Спина',
+ add:'В корзину',added:'Добавлено в корзину ✓',pickSize:'Выберите размер',extra:'дизайн',print:'Принт',kashta:'Вышивка',
+ cartEmpty:'Корзина пуста',goShop:'Перейти в каталог',total:'Итого',checkout:'Оформить',remove:'Удалить',
+ s_contact:'Ваши данные',name:'Ваше имя',phone:'Номер телефона',sharePhone:'📱 Отправить номер из Telegram',
+ s_del:'Получение',pickup:'Самовывоз',delivery:'Доставка',shopAt:'Адрес магазина',
+ addr:'Адрес (район, улица, дом, ориентир)',sendLoc:'📍 Отправить геолокацию',locOk:'📍 Геолокация получена ✓',locFail:'Не удалось получить геолокацию. Напишите адрес.',
+ comment:'Комментарий (необязательно)',s_pay:'Оплата',payTxt:'Отсканируйте QR-код в Paynet или любом платёжном приложении и загрузите чек.',
+ payLater:'Оплатить можно и позже — менеджер свяжется с вами.',receipt:'Чек (необязательно)',addPh:'Добавить',
+ order:'Оформить заказ',sending:'Отправка…',done:'Заказ принят!',doneTxt:'Менеджер скоро свяжется с вами. Статус заказа можно смотреть в разделе «Заказы» и в боте.',
+ myOrders:'Мои заказы',noOrders:'У вас пока нет заказов',paid:'✓ Чек отправлен',sendReceipt:'Отправить чек',due:'Срок',
+ st:['Новый','В работе','Готов','Передан','Отменён'],
+ address:'Адрес',map:'Открыть на карте',tel:'Телефон',hours:'Время работы',insta:'Instagram',mgr:'Менеджер',
+ needTg:'Чтобы оформить заказ, откройте магазин через Telegram-бот',err:'Ошибка. Попробуйте ещё раз',errReq:'Заполните обязательные поля',
+ errStale:'Каталог обновился. Проверьте корзину и попробуйте снова',fill:'*',reload:'Обновить',noApi:'Магазин ещё не настроен (API_URL)'},
+en:{home:'Home',catalog:'Catalog',cart:'Cart',orders:'Orders',contact:'Contact',sum:'UZS',
+ cats:'Categories',hits:'Best sellers',all:'All',soon:'Products are coming soon',
+ custom:'Need your own design?',customP:'Print',customK:'Embroidery',from:'from',customTxt:'For a custom design, message our manager',writeMgr:'Message the manager',
+ color:'Color',size:'Size',qty:'Quantity',design:'Design',noDesign:'No design',garment:'Garment',front:'Front',back:'Back',
+ add:'Add to cart',added:'Added to cart ✓',pickSize:'Choose a size',extra:'design',print:'Print',kashta:'Embroidery',
+ cartEmpty:'Your cart is empty',goShop:'Go to catalog',total:'Total',checkout:'Checkout',remove:'Remove',
+ s_contact:'Your details',name:'Your name',phone:'Phone number',sharePhone:'📱 Share my Telegram number',
+ s_del:'Delivery',pickup:'Pick up',delivery:'Delivery',shopAt:'Shop address',
+ addr:'Address (district, street, building, landmark)',sendLoc:'📍 Send my location',locOk:'📍 Location received ✓',locFail:'Could not get your location. Please type the address.',
+ comment:'Note (optional)',s_pay:'Payment',payTxt:'Scan the QR code in Paynet or any payment app and upload the receipt.',
+ payLater:'You can also pay later — our manager will contact you.',receipt:'Receipt (optional)',addPh:'Add',
+ order:'Place order',sending:'Sending…',done:'Order received!',doneTxt:'Our manager will contact you soon. Track your order in “Orders” and in the bot.',
+ myOrders:'My orders',noOrders:'You have no orders yet',paid:'✓ Receipt sent',sendReceipt:'Send receipt',due:'Due',
+ st:['New','In progress','Ready','Delivered','Cancelled'],
+ address:'Address',map:'Open map',tel:'Phone',hours:'Opening hours',insta:'Instagram',mgr:'Manager',
+ needTg:'Open the shop from our Telegram bot to place an order',err:'Error. Please try again',errReq:'Fill in the required fields',
+ errStale:'The catalog changed. Check your cart and try again',fill:'*',reload:'Reload',noApi:'Shop is not configured yet (API_URL)'}
+};
+var STI = {'Yangi':0,'Ishda':1,'Tayyor':2,"Jo'natilgan":3,'Bekor qilingan':4};
+
+var S = {lang:'uz', data:null, me:null, cart:[], stack:[{v:'home'}], orders:null, form:null, tab:'home'};
+var initData = TG ? TG.initData : '';
+
+/* ---------- helpers ---------- */
+function L(k){ return (T[S.lang]||T.uz)[k]; }
+function nm(a){ return a ? (a[LI[S.lang]] || a[0] || '') : ''; }
+function money(n){ return String(Math.round(n||0)).replace(/\B(?=(\d{3})+(?!\d))/g,' ') + ' ' + L('sum'); }
+function $(id){ return document.getElementById(id); }
+function h(t,a,c){
+  var e=document.createElement(t);
+  if(a) for(var k in a){ var v=a[k]; if(v==null||v===false) continue;
+    if(k==='on'){ for(var ev in v) e.addEventListener(ev,v[ev]); }
+    else if(k==='cls') e.className=v; else if(k==='txt') e.textContent=v; else if(k==='html') e.innerHTML=v;
+    else if(k==='style') e.setAttribute('style',v); else e.setAttribute(k,v===true?'':v); }
+  if(c!=null) (Array.isArray(c)?c:[c]).forEach(function(x){ if(x==null||x===false) return; e.appendChild(typeof x==='object'?x:document.createTextNode(String(x))); });
+  return e;
+}
+function store(k,v){ try{ if(v===undefined) return JSON.parse(localStorage.getItem('uzs_'+k)||'null'); localStorage.setItem('uzs_'+k,JSON.stringify(v)); }catch(e){ return null; } }
+var tt;
+function toast(m,err){ var e=$('toast'); e.textContent=m; e.className='toast'+(err?' err':''); e.style.display='block'; clearTimeout(tt); tt=setTimeout(function(){e.style.display='none';},2800); }
+function busy(on){ $('load').style.display=on?'flex':'none'; }
+function haptic(t){ try{ TG.HapticFeedback.impactOccurred(t||'light'); }catch(e){} }
+function openLink(u){ try{ if(/t\.me\//.test(u)) TG.openTelegramLink(u); else TG.openLink(u); }catch(e){ window.open(u,'_blank'); } }
+
+function api(a,data,cb,quiet){
+  if(!window.API_URL || /BU_YERGA/.test(window.API_URL)){ toast(L('noApi'),1); if(cb) cb(null); return; }
+  data=data||{}; data.a=a; data.initData=initData; data.lang=S.lang;
+  if(!quiet) busy(true);
+  fetch(window.API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)})
+    .then(function(r){ return r.json(); })
+    .then(function(r){ if(!quiet) busy(false);
+      if(!r||!r.ok){ var e=r&&r.err; toast(e==='tg'?L('needTg'):e==='req'?L('errReq'):e==='stale'?L('errStale'):L('err'),1); if(cb) cb(null,e); return; }
+      if(cb) cb(r); })
+    .catch(function(){ if(!quiet) busy(false); toast(L('err'),1); if(cb) cb(null,'net'); });
+}
+
+/* ---------- data helpers ---------- */
+function P(id){ return S.data.products.filter(function(p){return p.id===id;})[0]; }
+function D(id){ return S.data.designs.filter(function(d){return d.id===id;})[0]; }
+function C(id){ return S.data.cats.filter(function(c){return c.id===id;})[0]; }
+function catItems(c){
+  if(c.type==='print'||c.type==='kashta') return S.data.designs.filter(function(d){return d.kind===c.type;});
+  return S.data.products.filter(function(p){return p.cats.indexOf(c.id)>=0;});
+}
+function visibleCats(){ return S.data.cats.filter(function(c){ return catItems(c).length || c.type!=='mahsulot'; }); }
+function designable(){ return S.data.products.filter(function(p){return p.design;}); }
+function unit(it){ var p=P(it.pid), d=it.design?D(it.design):null; return p ? p.price+(d?d.extra:0) : 0; }
+function cartTotal(){ return S.cart.reduce(function(s,it){ return s+unit(it)*it.qty; },0); }
+function cartCount(){ return S.cart.reduce(function(s,it){ return s+it.qty; },0); }
+function saveCart(){ store('cart',S.cart); }
+function cleanCart(){
+  S.cart=S.cart.filter(function(it){ var p=P(it.pid); if(!p||!p.colors[it.color]) return false;
+    if(it.design && (!D(it.design)||!p.design)) it.design=''; return true; });
+  saveCart();
+}
+
+/* mockup with design overlay */
+function mock(p,ci,did,side,cls){
+  var c=p.colors[ci]||p.colors[0], back=side==='back'&&c.back;
+  var box=h('div',{cls:cls||'stage'},[h('img',{cls:'base',src:back?c.back:c.img,alt:'',loading:'lazy'})]);
+  var d=did?D(did):null, j=back?p.back:p.front;
+  if(d&&j){
+    var w=j[2]*(d.kind==='kashta'?0.55:1);
+    box.appendChild(h('img',{cls:'dsg',src:d.img,alt:'',style:'left:'+(j[0]-w/2)+'%;top:'+j[1]+'%;width:'+w+'%'}));
+  }
+  return box;
+}
+
+/* ---------- navigation ---------- */
+function go(v,params,replace){
+  var st={v:v}; for(var k in params) st[k]=params[k];
+  if(replace) S.stack[S.stack.length-1]=st; else S.stack.push(st);
+  render(); window.scrollTo(0,0);
+}
+function tab(v){ S.tab=v; S.stack=[{v:v}]; render(); window.scrollTo(0,0); }
+function back(){ if(S.stack.length>1){ S.stack.pop(); if(S.stack.length===1&&{home:1,catalog:1,cart:1,orders:1,contact:1}[S.stack[0].v]) S.tab=S.stack[0].v; render(); window.scrollTo(0,0); } }
+function cur(){ return S.stack[S.stack.length-1]; }
+
+/* ---------- top / nav ---------- */
+function renderTop(title){
+  var t=$('top'); t.innerHTML='';
+  if(S.stack.length>1 && !(TG&&TG.BackButton&&TG.platform!=='unknown')) t.appendChild(h('button',{cls:'back',txt:'←',on:{click:back}}));
+  if(title) t.appendChild(h('div',{cls:'ttl',txt:title}));
+  else t.appendChild(h('img',{cls:'logo',src:'img/logo.png',alt:'UZ STICH'}));
+  var lg=h('div',{cls:'langs'});
+  [['uz',"O'z"],['ru','Ру'],['en','En']].forEach(function(x){
+    lg.appendChild(h('button',{cls:S.lang===x[0]?'on':'',txt:x[1],on:{click:function(){ setLang(x[0],true); }}}));
+  });
+  t.appendChild(lg);
+}
+function setLang(l,save){
+  S.lang=l; store('lang',l); document.documentElement.lang=l;
+  if(save && S.me) api('lang',{lang:l},null,true);
+  render();
+}
+var ICON={
+ home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
+ catalog:'<rect x="3" y="3" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/>',
+ cart:'<path d="M3 4h2l2.2 11.2a1 1 0 0 0 1 .8h9.6a1 1 0 0 0 1-.8L21 8H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="9" cy="20" r="1.6" fill="currentColor"/><circle cx="17" cy="20" r="1.6" fill="currentColor"/>',
+ orders:'<rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+ contact:'<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>'
+};
+function renderNav(show){
+  var n=$('nav'); n.innerHTML=''; n.style.display=show?'flex':'none';
+  if(!show) return;
+  ['home','catalog','cart','orders','contact'].forEach(function(k){
+    var b=h('button',{cls:S.tab===k?'on':'',on:{click:function(){ tab(k); }}});
+    b.innerHTML='<svg viewBox="0 0 24 24">'+ICON[k]+'</svg>';
+    b.appendChild(document.createTextNode(L(k)));
+    if(k==='cart'&&cartCount()) b.appendChild(h('em',{txt:cartCount()}));
+    n.appendChild(b);
+  });
+}
+function setBar(node){ var b=$('bar'); b.innerHTML=''; if(node){ b.className='bar'; b.appendChild(node); } else b.className=''; }
+
+/* ---------- render ---------- */
+function render(){
+  var st=cur(), m=$('main'); m.innerHTML='';
+  if(TG&&TG.BackButton){ try{ if(S.stack.length>1) TG.BackButton.show(); else TG.BackButton.hide(); }catch(e){} }
+  if(!S.data){ renderTop(); m.appendChild(h('div',{cls:'skel'})); renderNav(false); setBar(null); return; }
+  var V={home:vHome,catalog:vCatalog,cat:vCatalog,config:vConfig,cart:vCart,checkout:vCheckout,orders:vOrders,contact:vContact,done:vDone}[st.v]||vHome;
+  var r=V(st)||{};
+  renderTop(r.title);
+  (Array.isArray(r.body)?r.body:[r.body]).forEach(function(x){ if(x) m.appendChild(x); });
+  setBar(r.bar||null);
+  renderNav(!r.bar);
+}
+
+/* home */
+var bTimer;
+function vHome(){
+  var out=[], d=S.data;
+  if(d.banners.length){
+    var row=h('div',{cls:'banners'}), dots=h('div',{cls:'dots'});
+    d.banners.forEach(function(b,i){
+      var el;
+      if(b.img) el=h('button',{cls:'bn'},[h('img',{src:b.img,alt:nm(b.text)||''})]);
+      else el=h('button',{cls:'bn txt'},[h('b',{txt:nm(b.text)}),h('i',{txt:'→'})]);
+      el.addEventListener('click',function(){ if(b.cat&&C(b.cat)){ S.tab='catalog'; go('cat',{id:b.cat}); } });
+      row.appendChild(el); dots.appendChild(h('i',{cls:i?'':'on'}));
+    });
+    row.addEventListener('scroll',function(){ var i=Math.round(row.scrollLeft/row.clientWidth); [].forEach.call(dots.children,function(x,j){ x.className=j===i?'on':''; }); },{passive:true});
+    clearInterval(bTimer);
+    if(d.banners.length>1) bTimer=setInterval(function(){ if(!document.body.contains(row)){ clearInterval(bTimer); return; }
+      var i=Math.round(row.scrollLeft/row.clientWidth); row.scrollTo({left:((i+1)%d.banners.length)*row.clientWidth,behavior:'smooth'}); },5000);
+    out.push(row); if(d.banners.length>1) out.push(dots);
+  }
+  out.push(h('h2',{cls:'sec'},[L('cats')]));
+  var tiles=h('div',{cls:'tiles'});
+  visibleCats().forEach(function(c){
+    var it=catItems(c)[0], dz=c.type!=='mahsulot';
+    var img=it?(dz?it.img:it.colors[0].img):'';
+    tiles.appendChild(h('button',{cls:'tile'+(dz?' dz':''),on:{click:function(){ S.tab='catalog'; go('cat',{id:c.id}); }}},[
+      h('b',{txt:nm(c.name)}), h('em',{txt:catItems(c).length?'→':''}), img?h('img',{src:img,alt:'',loading:'lazy'}):null]));
+  });
+  out.push(tiles);
+  var hit=C('xit');
+  if(hit&&catItems(hit).length){
+    out.push(h('h2',{cls:'sec'},[nm(hit.name),h('button',{txt:L('all')+' →',on:{click:function(){ S.tab='catalog'; go('cat',{id:'xit'}); }}})]));
+    out.push(grid(catItems(hit),'mahsulot'));
+  }
+  out.push(h('div',{style:'height:14px'}));
+  out.push(customCard());
+  return {body:out};
+}
+function customCard(){
+  var s=S.data.set;
+  if(!s.mgr) return null;
+  return h('div',{cls:'info'},[h('b',{txt:L('custom')}),
+    s.printFrom?h('p',null,[L('customP')+': ',h('span',{txt:money(s.printFrom)+' '+L('from')})]):null,
+    s.kashtaFrom?h('p',null,[L('customK')+': ',h('span',{txt:money(s.kashtaFrom)+' '+L('from')})]):null,
+    h('p',{txt:L('customTxt')}),
+    h('button',{txt:L('writeMgr')+' → @'+s.mgr,on:{click:function(){ openLink('https://t.me/'+s.mgr); }}})]);
+}
+function grid(items,type){
+  var g=h('div',{cls:'grid'});
+  items.forEach(function(it){
+    if(type==='mahsulot'){
+      var sw=h('div',{cls:'sw'}); it.colors.slice(0,6).forEach(function(c){ sw.appendChild(h('i',{style:'background:'+c.hex})); });
+      g.appendChild(h('button',{cls:'pc',on:{click:function(){ go('config',{pid:it.id,design:'',ci:0}); }}},[
+        h('div',{cls:'im'},[h('img',{src:it.colors[0].img,alt:nm(it.name),loading:'lazy'})]),
+        h('div',{cls:'bd'},[h('span',{cls:'nm',txt:nm(it.name)}),h('span',{cls:'pr',txt:money(it.price)}),sw])]));
+    } else {
+      var base=designable()[0];
+      g.appendChild(h('button',{cls:'pc dz',on:{click:function(){ if(!base) return; go('config',{pid:base.id,design:it.id,ci:0}); }}},[
+        h('div',{cls:'im'},[h('img',{src:it.img,alt:nm(it.name),loading:'lazy'}),h('span',{cls:'tag'+(it.kind==='kashta'?' k':''),txt:L(it.kind)})]),
+        h('div',{cls:'bd'},[h('span',{cls:'nm',txt:nm(it.name)}),base?h('span',{cls:'pr',txt:money(base.price+it.extra)+' '+L('from')}):null])]));
+    }
+  });
+  return g;
+}
+
+/* catalog */
+function vCatalog(st){
+  var cats=visibleCats(); if(!cats.length) return {body:h('div',{cls:'empty',txt:L('soon')})};
+  var id=st.id||(cats[0]&&cats[0].id), c=C(id)||cats[0];
+  var chips=h('div',{cls:'chips'});
+  cats.forEach(function(x){ chips.appendChild(h('button',{cls:x.id===c.id?'on':'',txt:nm(x.name),on:{click:function(){ go('cat',{id:x.id},true); }}})); });
+  setTimeout(function(){ var on=chips.querySelector('.on'); if(on) chips.scrollLeft=on.offsetLeft-14; },0);
+  var items=catItems(c), body=[chips];
+  if(c.type!=='mahsulot') body.push(customCard());
+  if(!items.length) body.push(h('div',{cls:'empty'},[h('b',{txt:'🧵'}),L('soon')]));
+  else body.push(grid(items,c.type==='mahsulot'?'mahsulot':'design'));
+  return {title:L('catalog'),body:body};
+}
+
+/* configurator */
+function vConfig(st){
+  var p=P(st.pid); if(!p){ back(); return {}; }
+  if(st.ci==null||!p.colors[st.ci]) st.ci=0;
+  var c=p.colors[st.ci];
+  if(st.side==='back'&&!c.back) st.side='front';
+  if(!p.design) st.design='';
+  if(st.qty==null) st.qty=1;
+  var d=st.design?D(st.design):null, body=[];
+  function upd(k,v){ st[k]=v; render(); }
+
+  var stage=mock(p,st.ci,st.design,st.side);
+  if(c.back){
+    var sd=h('div',{cls:'side'});
+    [['front',L('front')],['back',L('back')]].forEach(function(x){ sd.appendChild(h('button',{cls:(st.side||'front')===x[0]?'on':'',txt:x[1],on:{click:function(){ upd('side',x[0]); }}})); });
+    stage.appendChild(sd);
+  }
+  body.push(stage);
+  body.push(h('div',{cls:'pname',txt:nm(p.name)+(d?' + '+nm(d.name):'')}));
+  if(nm(p.desc)) body.push(h('p',{cls:'pdesc',txt:nm(p.desc)}));
+  body.push(h('div',{cls:'price'},[money(unit({pid:p.id,design:st.design})),d&&d.extra?h('small',{txt:'('+L('extra')+' +'+money(d.extra)+')'}):null]));
+
+  if(st.design){
+    var gs=designable(); if(gs.length>1){
+      body.push(h('div',{cls:'lbl',txt:L('garment')}));
+      var gr=h('div',{cls:'hs'});
+      gs.forEach(function(g){ gr.appendChild(h('button',{cls:'gpick'+(g.id===p.id?' on':''),on:{click:function(){ st.pid=g.id; st.ci=0; render(); }}},[h('img',{src:g.colors[0].img,alt:''}),nm(g.name)])); });
+      body.push(gr);
+    }
+  }
+  body.push(h('div',{cls:'lbl'},[L('color'),h('span',{txt:nm(c.name)})]));
+  var sw=h('div',{cls:'swatches'});
+  p.colors.forEach(function(x,i){ sw.appendChild(h('button',{cls:i===st.ci?'on':'',title:nm(x.name),style:'background:'+x.hex,on:{click:function(){ upd('ci',i); }}})); });
+  body.push(sw);
+
+  if(p.sizes.length){
+    body.push(h('div',{cls:'lbl'},[L('size'),h('span',{txt:st.size||''})]));
+    var sz=h('div',{cls:'sizes',id:'sizes'});
+    p.sizes.forEach(function(s){ sz.appendChild(h('button',{cls:s===st.size?'on':'',txt:s,on:{click:function(){ upd('size',s); }}})); });
+    body.push(sz);
+  }
+  if(p.design&&S.data.designs.length){
+    body.push(h('div',{cls:'lbl',txt:L('design')}));
+    var dr=h('div',{cls:'hs'});
+    dr.appendChild(h('button',{cls:'dpick'+(!st.design?' on':''),on:{click:function(){ upd('design',''); }}},[h('div',{cls:'t'},[h('b',{txt:'∅'})]),L('noDesign')]));
+    S.data.designs.forEach(function(x){
+      dr.appendChild(h('button',{cls:'dpick'+(st.design===x.id?' on':''),on:{click:function(){ upd('design',x.id); }}},[h('div',{cls:'t'},[h('img',{src:x.img,alt:'',loading:'lazy'})]),nm(x.name)]));
+    });
+    body.push(dr);
+    setTimeout(function(){ var on=dr.querySelector('.on'); if(on) dr.scrollLeft=on.offsetLeft-30; },0);
+  }
+  body.push(h('div',{cls:'lbl',txt:L('qty')}));
+  body.push(h('div',{cls:'qty'},[h('button',{txt:'−',on:{click:function(){ if(st.qty>1) upd('qty',st.qty-1); }}}),h('b',{txt:st.qty}),h('button',{txt:'+',on:{click:function(){ upd('qty',st.qty+1); }}})]));
+
+  var bar=h('button',{cls:'btn g',on:{click:function(){
+    if(p.sizes.length&&!st.size){ toast(L('pickSize'),1); var z=$('sizes'); if(z){ z.classList.remove('bad'); void z.offsetWidth; z.classList.add('bad'); z.scrollIntoView({behavior:'smooth',block:'center'}); } return; }
+    var it={pid:p.id,color:st.ci,size:st.size||'',design:st.design||'',side:st.side==='back'?'back':'front',qty:st.qty};
+    var same=S.cart.filter(function(x){ return x.pid===it.pid&&x.color===it.color&&x.size===it.size&&x.design===it.design&&x.side===it.side; })[0];
+    if(same) same.qty+=it.qty; else S.cart.push(it);
+    saveCart(); haptic('medium'); toast(L('added')); st.qty=1; render();
+  }}},[L('add'),h('span',{cls:'sum',txt:money(unit({pid:p.id,design:st.design})*st.qty)})]);
+  return {title:nm(p.name),body:body,bar:bar};
+}
+
+/* cart */
+function vCart(){
+  if(!S.cart.length) return {title:L('cart'),body:h('div',{cls:'empty'},[h('b',{txt:'🛒'}),L('cartEmpty'),h('div',{style:'height:16px'}),h('button',{cls:'btn lite',txt:L('goShop'),on:{click:function(){ tab('catalog'); }}})])};
+  var body=[];
+  S.cart.forEach(function(it,i){
+    var p=P(it.pid), c=p.colors[it.color], d=it.design?D(it.design):null;
+    var meta=[nm(c.name),it.size,d?nm(d.name)+(it.side==='back'?' · '+L('back'):''):null].filter(Boolean).join(' · ');
+    body.push(h('div',{cls:'cl'},[mock(p,it.color,it.design,it.side,'th'),
+      h('div',{cls:'in'},[h('b',{txt:nm(p.name)}),h('small',{txt:meta}),
+        h('div',{cls:'rw'},[
+          h('div',{cls:'qty'},[h('button',{txt:'−',on:{click:function(){ if(it.qty>1){ it.qty--; } else S.cart.splice(i,1); saveCart(); render(); }}}),h('b',{txt:it.qty}),h('button',{txt:'+',on:{click:function(){ it.qty++; saveCart(); render(); }}})]),
+          h('b',{txt:money(unit(it)*it.qty)})])]),
+    ]));
+  });
+  body.push(h('div',{cls:'tot'},[h('span',{txt:L('total')}),h('span',{txt:money(cartTotal())})]));
+  var bar=h('button',{cls:'btn',on:{click:function(){ go('checkout'); }}},[L('checkout'),h('span',{cls:'sum',txt:money(cartTotal())})]);
+  return {title:L('cart'),body:body,bar:bar};
+}
+
+/* checkout */
+function shrink(file,cb){
+  var r=new FileReader();
+  r.onload=function(){ var im=new Image(); im.onload=function(){
+    var s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');
+    c.width=Math.round(im.width*s); c.height=Math.round(im.height*s);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height); cb(c.toDataURL('image/jpeg',.82).split(',')[1]); }; im.src=r.result; };
+  r.readAsDataURL(file);
+}
+function photo1(get,set){
+  var box=h('div',{cls:'ph'});
+  function draw(){ box.innerHTML='';
+    if(get()) box.appendChild(h('div',{cls:'t'},[h('img',{src:'data:image/jpeg;base64,'+get()}),h('b',{txt:'×',on:{click:function(){ set(''); draw(); }}})]));
+    else { var inp=h('input',{type:'file',accept:'image/*'}); inp.addEventListener('change',function(){ if(inp.files[0]) shrink(inp.files[0],function(d){ set(d); draw(); }); });
+      box.appendChild(h('label',null,[h('span',{txt:'+'}),L('addPh'),inp])); } }
+  draw(); return box;
+}
+function vCheckout(){
+  if(!S.cart.length){ back(); return {}; }
+  var me=S.me||{}, f=S.form||(S.form={name:me.name||'',phone:me.phone||'',delivery:'pickup',addr:me.addr||'',loc:null,comment:'',receipt:''});
+  var set=S.data.set, body=[];
+  function inp(k,type,ph){ var e=h(type==='area'?'textarea':'input',{id:'f_'+k,type:type==='area'?null:type,inputmode:type==='tel'?'tel':null,placeholder:ph||null});
+    e.value=f[k]||''; e.addEventListener('input',function(){ f[k]=e.value; }); return e; }
+
+  var c1=h('div',{cls:'card'},[h('h3',null,[h('i',{txt:'1'}),L('s_contact')]),
+    h('label',{cls:'l',txt:L('name')+' *'}),inp('name','text'),
+    h('label',{cls:'l',txt:L('phone')+' *'}),inp('phone','tel','+998')]);
+  if(TG&&TG.requestContact&&initData){
+    c1.appendChild(h('button',{cls:'sbtn',txt:L('sharePhone'),on:{click:function(){
+      try{ TG.requestContact(function(ok,res){ var ph=ok&&res&&res.responseUnsafe&&res.responseUnsafe.contact&&res.responseUnsafe.contact.phone_number;
+        if(ph){ f.phone=(ph.charAt(0)==='+'?'':'+')+ph; render(); } }); }catch(e){}
+    }}}));
+  }
+  body.push(c1);
+
+  var seg=h('div',{cls:'seg'});
+  [['pickup',L('pickup')],['delivery',L('delivery')]].forEach(function(x){ seg.appendChild(h('button',{cls:f.delivery===x[0]?'on':'',txt:x[1],on:{click:function(){ f.delivery=x[0]; render(); }}})); });
+  var c2=h('div',{cls:'card'},[h('h3',null,[h('i',{txt:'2'}),L('s_del')]),h('div',{style:'height:10px'}),seg]);
+  if(f.delivery==='pickup'){
+    c2.appendChild(h('div',{cls:'note'},[h('b',{txt:L('shopAt')+': '}),set.addr]));
+    if(set.map) c2.appendChild(h('button',{cls:'sbtn ok',txt:'🗺 '+L('map'),on:{click:function(){ openLink(set.map); }}}));
+  } else {
+    c2.appendChild(h('label',{cls:'l',txt:L('addr')+' *'})); c2.appendChild(inp('addr','area'));
+    c2.appendChild(h('button',{cls:'sbtn'+(f.loc?' ok':''),txt:f.loc?L('locOk'):L('sendLoc'),on:{click:getLoc}}));
+    if(set.delivery) c2.appendChild(h('div',{cls:'note',txt:set.delivery}));
+  }
+  c2.appendChild(h('label',{cls:'l',txt:L('comment')})); c2.appendChild(inp('comment','area'));
+  body.push(c2);
+
+  var c3=h('div',{cls:'card'},[h('h3',null,[h('i',{txt:'3'}),L('s_pay')]),
+    h('div',{cls:'tot',style:'padding:10px 0 0'},[h('span',{txt:L('total')}),h('span',{txt:money(cartTotal())})])]);
+  if(set.qr) c3.appendChild(h('div',{cls:'qr'},[h('img',{src:set.qr,alt:'Paynet QR'}),h('div',{cls:'note',style:'margin:0',txt:L('payTxt')})]));
+  c3.appendChild(h('label',{cls:'l',txt:L('receipt')}));
+  c3.appendChild(photo1(function(){return f.receipt;},function(v){ f.receipt=v; }));
+  c3.appendChild(h('div',{cls:'note',txt:L('payLater')}));
+  body.push(c3);
+
+  function getLoc(){
+    function ok(lat,lon){ f.loc={lat:lat,lon:lon}; haptic(); render(); }
+    function fail(){ toast(L('locFail'),1); }
+    try{
+      var lm=TG&&TG.LocationManager;
+      if(lm&&TG.isVersionAtLeast&&TG.isVersionAtLeast('8.0')){
+        lm.init(function(){ if(!lm.isLocationAvailable){ browserLoc(); return; }
+          lm.getLocation(function(d){ if(d&&d.latitude) ok(d.latitude,d.longitude); else if(lm.isAccessRequested&&!lm.isAccessGranted){ try{ lm.openSettings(); }catch(e){ fail(); } } else browserLoc(); }); });
+        return;
+      }
+    }catch(e){}
+    browserLoc();
+    function browserLoc(){ if(!navigator.geolocation) return fail();
+      navigator.geolocation.getCurrentPosition(function(p){ ok(p.coords.latitude,p.coords.longitude); },fail,{enableHighAccuracy:true,timeout:15000}); }
+  }
+
+  var bar=h('button',{cls:'btn g',on:{click:function(){
+    if(!initData){ toast(L('needTg'),1); return; }
+    var need=['name','phone'].concat(f.delivery==='delivery'&&!f.loc?['addr']:[]);
+    for(var i=0;i<need.length;i++){ if(!String(f[need[i]]||'').trim()){ toast(L('errReq'),1); var e=$('f_'+need[i]); if(e){ e.classList.remove('bad'); void e.offsetWidth; e.classList.add('bad'); e.focus(); } return; } }
+    if(String(f.phone).replace(/\D/g,'').length<9){ toast(L('errReq'),1); $('f_phone').classList.add('bad'); return; }
+    var b=this; b.disabled=true; b.firstChild.textContent=L('sending');
+    api('order',{items:S.cart,name:f.name.trim(),phone:f.phone.trim(),delivery:f.delivery,addr:f.addr.trim(),loc:f.delivery==='delivery'?f.loc:null,comment:f.comment.trim(),receipt:f.receipt},function(r){
+      b.disabled=false;
+      if(!r){ b.firstChild.textContent=L('order'); return; }
+      S.me=S.me||{}; S.me.name=f.name; S.me.phone=f.phone; S.me.addr=f.addr;
+      S.cart=[]; saveCart(); S.form=null; S.orders=null; haptic('heavy');
+      S.tab='orders'; S.stack=[{v:'orders'},{v:'done',n:r.n}]; render();
+    });
+  }}},[L('order'),h('span',{cls:'sum',txt:money(cartTotal())})]);
+  return {title:L('checkout'),body:body,bar:bar};
+}
+function vDone(st){
+  return {body:h('div',{cls:'done'},[h('div',{cls:'ok',txt:'✓'}),h('h2',{cls:'sec',style:'justify-content:center',txt:L('done')}),h('div',{cls:'n',txt:'№'+st.n}),h('p',{txt:L('doneTxt')})]),
+    bar:h('button',{cls:'btn',txt:L('myOrders'),on:{click:function(){ tab('orders'); }}})};
+}
+
+/* orders */
+function vOrders(){
+  if(!initData) return {title:L('myOrders'),body:h('div',{cls:'empty'},[h('b',{txt:'📦'}),L('needTg')])};
+  if(S.orders===null){ api('orders',{},function(r){ S.orders=r?r.orders:[]; if(cur().v==='orders') render(); },true); return {title:L('myOrders'),body:h('div',{cls:'skel'})}; }
+  if(!S.orders.length) return {title:L('myOrders'),body:h('div',{cls:'empty'},[h('b',{txt:'📦'}),L('noOrders')])};
+  var body=S.orders.map(function(o){
+    var si=STI[o.status]; if(si==null) si=0;
+    var steps=h('div',{cls:'steps'}); if(si<4) for(var i=0;i<4;i++) steps.appendChild(h('i',{cls:i<=si?'on':''}));
+    var rc={v:''}, foot=[h('span',{txt:money(o.total)})];
+    if(o.paid) foot.push(h('span',{cls:'paid',txt:L('paid')}));
+    else if(si<4) foot.push(h('button',{cls:'mini',txt:L('sendReceipt'),on:{click:function(){
+      var inp=h('input',{type:'file',accept:'image/*'}); inp.addEventListener('change',function(){ if(!inp.files[0]) return;
+        shrink(inp.files[0],function(d){ api('receipt',{id:o.id,photo:d},function(r){ if(r){ o.paid=true; toast(L('paid')); render(); } }); }); });
+      inp.click(); }}}));
+    return h('div',{cls:'oc'},[
+      h('div',{cls:'r1'},[h('span',{cls:'no',txt:'№'+o.id}),h('span',{cls:'bdg b-'+si,txt:L('st')[si]})]),
+      h('div',{cls:'ds',txt:o.desc}),
+      h('div',{cls:'note',style:'margin:0 0 8px',txt:o.date+' · '+L('due')+': '+o.due}),
+      h('div',{cls:'ft'},foot), steps]);
+  });
+  return {title:L('myOrders'),body:body};
+}
+
+/* contact */
+function vContact(){
+  var s=S.data.set, items=[];
+  function ci(ic,lab,val,fn){ return h(fn?'button':'div',{cls:'ci',on:fn?{click:fn}:null},[h('i',{txt:ic}),h('div',null,[h('small',{txt:lab}),h('b',{txt:val})])]); }
+  if(s.addr) items.push(ci('📍',L('address'),s.addr,s.map?function(){ openLink(s.map); }:null));
+  if(s.phone) items.push(ci('📞',L('tel'),s.phone,function(){ location.href='tel:'+s.phone.replace(/[^\d+]/g,''); }));
+  if(s.hours) items.push(ci('🕙',L('hours'),s.hours));
+  if(s.insta) items.push(ci('📷',L('insta'),'@'+s.insta,function(){ openLink('https://instagram.com/'+s.insta); }));
+  if(s.mgr) items.push(ci('💬',L('mgr'),'@'+s.mgr,function(){ openLink('https://t.me/'+s.mgr); }));
+  return {title:L('contact'),body:[h('div',{cls:'hero'},[h('img',{src:'img/logo.png',alt:''}),h('div',null,[h('b',{txt:s.name}),h('span',{txt:L('customP')+' · '+L('customK')})])]),
+    h('div',{cls:'card'},items)]};
+}
+
+/* ---------- start ---------- */
+function start(){
+  if(TG){ try{ TG.ready(); TG.expand(); TG.setHeaderColor('#97CDB4'); TG.setBackgroundColor('#F2F7F4');
+    if(TG.disableVerticalSwipes) TG.disableVerticalSwipes(); TG.BackButton.onClick(back); }catch(e){} }
+  var q=(location.search.match(/[?&]lang=(uz|ru|en)/)||[])[1];
+  var tl=TG&&TG.initDataUnsafe&&TG.initDataUnsafe.user&&TG.initDataUnsafe.user.language_code;
+  S.lang=q||store('lang')||(tl==='ru'||tl==='en'?tl:'uz');
+  document.documentElement.lang=S.lang;
+  S.cart=store('cart')||[];
+  render();
+  api('init',{},function(r){
+    if(!r){ $('main').innerHTML=''; $('main').appendChild(h('div',{cls:'empty'},[h('b',{txt:'⚠️'}),L('err'),h('div',{style:'height:14px'}),h('button',{cls:'btn lite',txt:L('reload'),on:{click:function(){ location.reload(); }}})])); return; }
+    S.data=r; S.me=r.me;
+    if(!q&&!store('lang')&&r.me&&r.me.lang) S.lang=r.me.lang;
+    cleanCart(); render();
+  },true);
+}
+start();
+})();
+</script>
+</body>
+</html>
