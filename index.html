@@ -340,7 +340,7 @@ function renderTop(title){
   var t=$('top'); t.innerHTML='';
   if(S.stack.length>1 && !(TG&&TG.BackButton&&TG.platform!=='unknown')) t.appendChild(h('button',{cls:'back',txt:'←',on:{click:back}}));
   if(title) t.appendChild(h('div',{cls:'ttl',txt:title}));
-  else t.appendChild(h('img',{cls:'logo',src:'img/logo.png',alt:'UZ STICH'}));
+  else t.appendChild(h('img',{cls:'logo',src:'logo.png',alt:'UZ STICH'}));
   var lg=h('div',{cls:'langs'});
   [['uz',"O'z"],['ru','Ру'],['en','En']].forEach(function(x){
     lg.appendChild(h('button',{cls:S.lang===x[0]?'on':'',txt:x[1],on:{click:function(){ setLang(x[0],true); }}}));
@@ -672,7 +672,7 @@ function vContact(){
   if(s.hours) items.push(ci('🕙',L('hours'),s.hours));
   if(s.insta) items.push(ci('📷',L('insta'),'@'+s.insta,function(){ openLink('https://instagram.com/'+s.insta); }));
   if(s.mgr) items.push(ci('💬',L('mgr'),'@'+s.mgr,function(){ openLink('https://t.me/'+s.mgr); }));
-  return {title:L('contact'),body:[h('div',{cls:'hero'},[h('img',{src:'img/logo.png',alt:''}),h('div',null,[h('b',{txt:s.name}),h('span',{txt:L('customP')+' · '+L('customK')})])]),
+  return {title:L('contact'),body:[h('div',{cls:'hero'},[h('img',{src:'logo.png',alt:''}),h('div',null,[h('b',{txt:s.name}),h('span',{txt:L('customP')+' · '+L('customK')})])]),
     h('div',{cls:'card'},items)]};
 }
 
